@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.zheng.mapper.BookMapper">
+
+    <select id="selectByPid" resultType="com.example.zheng.entity.Category">
+        select * from book where pid = #{id} order by id desc
+    </select>
+
+    <select id="list" resultType="com.example.zheng.entity.Book">
+
+        select * from book order by id desc
+    </select>
+    <!---->
+
+    <select id="listByCondition" resultType="com.example.zheng.entity.Book" >
+        select * from book
+        <where>
+            <if test="name != null and name != ''">
+                name like concat('%',#{name},'%')
+            </if>
+            <if test="bookNo != null and bookNo != ''">
+                and book_no = #{bookNo}
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+    <insert id="save">
+        insert into book(name,description,publish_date,author,publisher,category,book_no,cover,score,nums)
+        values (#{name},#{description},#{publishDate},#{author},#{publisher},#{category},#{bookNo},#{cover},#{score},#{nums})
+    </insert>
+
+
+    <!--    根据id查询-->
+    <select id="getById" resultType="com.example.zheng.entity.Book">
+        select * from book where id = #{id}
+    </select>
+<!--    检验图书是否足够-->
+    <select id="getByNo" resultType="com.example.zheng.entity.Book">
+        select * from book where book_no = #{BookNo}
+    </select>
+
+    <!--    根据id修改数据-->
+    <update id="updateById">
+
+        update book set name = #{name},
+        description = #{description},
+        publish_date = #{publishDate},
+        author = #{author},
+        publisher = #{publisher},
+        category = #{category},
+        book_no = #{bookNo},
+        cover = #{cover},
+        score = #{score},
+        updatetime = #{updatetime},
+        nums = #{nums}
+        where id = #{id}
+    </update>
+<!--   还书业务中 更改图书藏量-->
+    <update id="updateNumByNo">
+
+
+           update book set nums = nums + 1 where book_no = #{bookNo}
+
+    </update>
+
+    <!--    根据id删除数据-->
+    <delete id="deleteById">
+
+        delete from book where id = #{id}
+    </delete>
+
+
+
+
+
+
+
+
+
+
+</mapper>

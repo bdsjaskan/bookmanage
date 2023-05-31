@@ -1,0 +1,23 @@
+server:
+  port: 80
+spring:
+  application:
+    name: zheng
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://menggiegie.mysql.rds.aliyuncs.com:3306/library-management?useSSL=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: Mengge123
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+#    log-impl: org.apache.ibatis,logging.stdout.stdOutImpl
+    map-underscore-to-camel-case: true #开启数据库字段下划线驼峰
+logging:
+  level:
+    com.example.zheng: debug
+
