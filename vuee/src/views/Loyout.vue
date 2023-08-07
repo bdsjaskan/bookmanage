@@ -1,10 +1,5 @@
 <template>
   <div>
-
-
-
-
-
     <div style="height: 60px;line-height: 60px; background-color: white; margin-bottom: 2px; display: flex">
       <div style="width: 300px ">
         <img src="@/assets/long.png" alt="" style="width: 40px; position: relative; top: 10px ; left: 20px">
